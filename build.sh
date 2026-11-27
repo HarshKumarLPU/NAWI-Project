@@ -19,9 +19,9 @@ python manage.py collectstatic --no-input --settings=config.settings.production
 echo "==> Applying database migrations..."
 python manage.py migrate --no-input --settings=config.settings.production
 
-# 4. Create default administrator if not present
-echo "==> Checking and creating default production administrator..."
-python scripts/create_production_admin.py
+# 4. Seed demo organization, all 4 role accounts, instruments, and test sessions
+echo "==> Seeding demo data and role accounts..."
+DJANGO_SETTINGS_MODULE=config.settings.production python scripts/seed_demo_data.py
 
 echo "============================================================"
 echo "  Build completed successfully! Ready for launch."
